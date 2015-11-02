@@ -59,9 +59,9 @@ dge = DGEList(counts=data, group=group)
 dge <- estimateCommonDisp(dge)
 dge <- estimateTagwiseDisp(dge)
 
-# make an MA-plot of 0 vs 6 hour
+# make an MA-plot of 6 vs 12 hour
 
-et <- exactTest(dge, pair=c("0Hour", "6Hour"))
+et <- exactTest(dge, pair=c("6Hour", "12Hour"))
 etp <- topTags(et, n=100000)
 etp$table$logFC = -etp$table$logFC
 pdf("nema-edgeR-MA-plot.pdf")
@@ -77,6 +77,6 @@ pdf("nema-edgeR-MDS.pdf")
 plotMDS(dge, labels=labels)
 dev.off()
 
-# output CSV for 0-6 hr
-write.csv(etp$table, "nema-edgeR-0v6.csv")
+# output CSV for 6-12 hr
+write.csv(etp$table, "nema-edgeR-6v12.csv")
 
